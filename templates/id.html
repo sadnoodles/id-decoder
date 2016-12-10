@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>{{title}}</title>
+</head>
+
+<body>
+<script language="JavaScript" type="text/javascript">
+	  function testInput(){
+		  var s=document.form1.getText.value;
+		  re=/^(\d{17}[x\d]|\d{15})$/i;
+		  var arr=re.exec(s);
+		  if(arr!=null){
+			 document.form1.submit();
+		  	 }else{
+			 document.form1.x.value="{{errMsg}}";}
+		  }
+	  function clearText(){
+		  if(document.form1.getText.value=="{{inputmsg}}"){
+			document.form1.getText.value="";
+		  }
+	  }
+</script>
+<form name="form1" id="form1" method="post" align="center"  width="100%" >
+    <label>
+      <input type="text" tabIndex="1" name="getText" id="getText" maxlength="18" value="{{inputmsg}}"  onfocus="clearText()" align="left" />
+    </label>
+    <label>
+      <input type="button" tabIndex="2" name="btn"  id="btn"  onclick="testInput()" value="提交" align="center" />
+    </label>
+    <br />
+    <output name="x" for="btn"> </output>
+  <hr/>
+</form>
+<p>
+<table border="0" align="center"   width="50%">
+  <caption>
+    {{ formtitle }}
+  </caption>
+{% for item in data[:-1] %}
+  <tr>
+    <th scope="row"  nowrap="nowrap" align="right">&nbsp;{{ item[0] }}</th>
+    <td align="left" nowrap="nowrap">&nbsp;{{ item[1] }}</td>
+  </tr>
+{% endfor %}
+</table>
+</p>
+<br/>
+<br/>
+<p align="center">
+{{ data[-1] }}
+</p>
+<br/>
+<hr />
+<p align="right">Powered By Python, Flask and Herku</p>
+</body>
+</html>
